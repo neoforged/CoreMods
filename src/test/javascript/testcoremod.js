@@ -1,7 +1,7 @@
 function initializeCoreMod() {
     print("Hello");
-    Java.type('net.minecraftforge.coremod.api.ASMAPI').loadFile('testcoremod2.js')
-    Java.type('net.minecraftforge.coremod.api.ASMAPI').log("INFO", "HI!")
+    Java.type('net.neoforged.coremod.api.ASMAPI').loadFile('testcoremod2.js')
+    Java.type('net.neoforged.coremod.api.ASMAPI').log("INFO", "HI!")
     moreFunctions()
     return {
         'coremodone': {
@@ -11,7 +11,7 @@ function initializeCoreMod() {
             },
             'transformer': function(classNode) {
                 print("Cheese ", classNode.name);
-                var tmp=Java.type('net.minecraftforge.coremod.api.ASMAPI').getMethodNode()
+                var tmp=Java.type('net.neoforged.coremod.api.ASMAPI').getMethodNode()
                 var opcodes = Java.type('org.objectweb.asm.Opcodes')
                 tmp.name = 'dummyMethod';
                 tmp.visitVarInsn(opcodes.ALOAD, 0);

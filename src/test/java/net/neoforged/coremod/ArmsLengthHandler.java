@@ -1,4 +1,4 @@
-package net.minecraftforge.coremod;
+package net.neoforged.coremod;
 
 import org.apache.logging.log4j.LogManager;
 

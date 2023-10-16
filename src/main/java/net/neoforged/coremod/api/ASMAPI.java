@@ -1,8 +1,8 @@
-package net.minecraftforge.coremod.api;
+package net.neoforged.coremod.api;
 
 import cpw.mods.modlauncher.Launcher;
 import cpw.mods.modlauncher.api.INameMappingService;
-import net.minecraftforge.coremod.CoreModTracker;
+import net.neoforged.coremod.CoreModTracker;
 import org.jetbrains.annotations.Nullable;
 import org.objectweb.asm.Opcodes;
 import org.objectweb.asm.tree.*;

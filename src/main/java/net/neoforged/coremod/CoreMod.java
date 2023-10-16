@@ -1,11 +1,11 @@
-package net.minecraftforge.coremod;
+package net.neoforged.coremod;
 
 import cpw.mods.modlauncher.api.*;
-import net.minecraftforge.coremod.api.ASMAPI;
-import net.minecraftforge.coremod.transformer.CoreModClassTransformer;
-import net.minecraftforge.coremod.transformer.CoreModFieldTransformer;
-import net.minecraftforge.coremod.transformer.CoreModMethodTransformer;
-import net.minecraftforge.forgespi.coremod.*;
+import net.neoforged.coremod.api.ASMAPI;
+import net.neoforged.coremod.transformer.CoreModClassTransformer;
+import net.neoforged.coremod.transformer.CoreModFieldTransformer;
+import net.neoforged.coremod.transformer.CoreModMethodTransformer;
+import net.neoforged.neoforgespi.coremod.*;
 import org.apache.logging.log4j.*;
 import org.jetbrains.annotations.Nullable;
 
@@ -36,7 +36,7 @@ public class CoreMod {
 
     @SuppressWarnings("unchecked")
     void initialize() {
-        logger = LogManager.getLogger("net.minecraftforge.coremod.CoreMod."+this.file.getOwnerId());
+        logger = LogManager.getLogger("net.neoforged.coremod.CoreMod."+this.file.getOwnerId());
         try {
             scriptEngine.eval(file.readCoreMod());
             CoreModTracker.setCoreMod(this);

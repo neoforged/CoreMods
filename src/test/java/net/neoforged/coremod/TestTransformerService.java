@@ -1,4 +1,4 @@
-package net.minecraftforge.coremod;
+package net.neoforged.coremod;
 
 import cpw.mods.modlauncher.api.IEnvironment;
 import cpw.mods.modlauncher.api.ITransformationService;

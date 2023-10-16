@@ -1,4 +1,4 @@
-package net.minecraftforge.coremod;
+package net.neoforged.coremod;
 
 import java.util.function.Function;
 
@@ -14,7 +14,7 @@ class NashornFactory {
     }
 
     @SuppressWarnings("unchecked")
-    static <A,R> Function<A,R> getFunction(Bindings obj) {
+	static <A,R> Function<A,R> getFunction(Bindings obj) {
         return a -> (R)((ScriptObjectMirror)obj).call(obj, a);
     }
 }

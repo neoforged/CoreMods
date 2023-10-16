@@ -1,7 +1,7 @@
-package net.minecraftforge.coremod;
+package net.neoforged.coremod;
 
 import cpw.mods.modlauncher.api.*;
-import net.minecraftforge.forgespi.coremod.*;
+import net.neoforged.neoforgespi.coremod.*;
 
 import java.util.*;
 

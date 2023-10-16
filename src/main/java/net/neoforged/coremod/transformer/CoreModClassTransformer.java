@@ -1,7 +1,7 @@
-package net.minecraftforge.coremod.transformer;
+package net.neoforged.coremod.transformer;
 
 import cpw.mods.modlauncher.api.ITransformer;
-import net.minecraftforge.coremod.CoreMod;
+import net.neoforged.coremod.CoreMod;
 import org.objectweb.asm.tree.ClassNode;
 
 import java.util.Set;

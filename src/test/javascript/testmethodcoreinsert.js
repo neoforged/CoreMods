@@ -8,7 +8,7 @@ function initializeCoreMod() {
                 'methodDesc': '()Z'
             },
             'transformer': function(method) {
-                var ASMAPI = Java.type('net.minecraftforge.coremod.api.ASMAPI');
+                var ASMAPI = Java.type('net.neoforged.coremod.api.ASMAPI');
                 var newList1 = ASMAPI.listOf(ASMAPI.buildMethodCall("cpw/mods/RedirectClass", "newMethod", "()Z", ASMAPI.MethodType.STATIC));
                 if (ASMAPI.insertInsnList(method, ASMAPI.MethodType.STATIC, "cpw/mods/TestClass", "testMethod2", "()Z", newList1, ASMAPI.InsertMode.REMOVE_ORIGINAL) === false) {
                     throw "MethodInsnNode for testMethod2 not found!";

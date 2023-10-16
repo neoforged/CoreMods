@@ -1,4 +1,4 @@
-package net.minecraftforge.coremod;
+package net.neoforged.coremod;
 
 import cpw.mods.modlauncher.Launcher;
 import cpw.mods.modlauncher.TransformingClassLoader;
@@ -17,7 +17,7 @@ public class TestLaunchTransformer {
     @Test
     public void testCoreModLoading() {
         System.setProperty("test.harness", "out/production/classes,out/test/classes,out/testJars/classes,build/classes/java/main,build/classes/java/test,build/classes/java/testJars");
-        System.setProperty("test.harness.callable", "net.minecraftforge.coremod.TestLaunchTransformer$Callback");
+        System.setProperty("test.harness.callable", "net.neoforged.coremod.TestLaunchTransformer$Callback");
 
         cme.loadCoreMod(new JSFileLoader("src/test/javascript/testcoremod.js"));
         cme.loadCoreMod(new JSFileLoader("src/test/javascript/testcore2mod.js"));
@@ -32,7 +32,7 @@ public class TestLaunchTransformer {
         public static Callable<Void> supplier() {
             final TransformingClassLoader contextClassLoader = (TransformingClassLoader) Thread.currentThread().getContextClassLoader();
             try {
-                final Class<?> clazz = Class.forName("net.minecraftforge.coremod.ArmsLengthHandler", true, contextClassLoader);
+                final Class<?> clazz = Class.forName("net.neoforged.coremod.ArmsLengthHandler", true, contextClassLoader);
                 return (Callable<Void>) clazz.newInstance();
             } catch (ClassNotFoundException | IllegalAccessException | InstantiationException e) {
                 throw new RuntimeException(e);

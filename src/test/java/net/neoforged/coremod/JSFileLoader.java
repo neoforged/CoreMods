@@ -1,6 +1,6 @@
-package net.minecraftforge.coremod;
+package net.neoforged.coremod;
 
-import net.minecraftforge.forgespi.coremod.ICoreModFile;
+import net.neoforged.neoforgespi.coremod.ICoreModFile;
 
 import java.io.IOException;
 import java.io.Reader;
