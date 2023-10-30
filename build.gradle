@@ -70,7 +70,7 @@ dependencies {
     implementation("org.ow2.asm:asm-tree:${ASM_VERSION}")
     implementation("org.ow2.asm:asm-util:${ASM_VERSION}")
     implementation('net.neoforged:neoforgespi:8.0.0')
-    implementation('org.openjdk.nashorn:nashorn-core:15.1.1')
+    implementation('org.openjdk.nashorn:nashorn-core:15.4')
 }
 
 ext.sharedManifest = manifest {
@@ -78,10 +78,9 @@ ext.sharedManifest = manifest {
                 'Specification-Vendor': 'neoforged',
                 'Specification-Version': '1', // Currently version 1 of the coremod specification
                 'Implementation-Title': project.name,
-                'Implementation-Version': "${project.version}+${System.getenv('BUILD_NUMBER')?:0}+${gradleutils.gitInfo.branch}.${gradleutils.gitInfo.abbreviatedId}",
+                'Implementation-Version': "${project.version}+${gradleutils.gitInfo.branch}.${gradleutils.gitInfo.abbreviatedId}",
                 'Implementation-Vendor' :'neoforged',
-                'Git-Commit': gradleutils.gitInfo.abbreviatedId,
-                'Build-Number': "${System.getenv("BUILD_NUMBER")?:0}"],
+                'Git-Commit': gradleutils.gitInfo.abbreviatedId],
             'net/neoforged/coremod/')
 }
 
