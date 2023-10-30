@@ -1,6 +1,7 @@
 plugins {
     id 'com.github.ben-manes.versions' version '0.39.0'
     id 'net.neoforged.gradleutils' version '2.+'
+    id 'signing'
 }
 
 apply plugin: 'java-library'
@@ -79,9 +80,7 @@ ext.sharedManifest = manifest {
                 'Implementation-Title': project.name,
                 'Implementation-Version': "${project.version}+${System.getenv('BUILD_NUMBER')?:0}+${gradleutils.gitInfo.branch}.${gradleutils.gitInfo.abbreviatedId}",
                 'Implementation-Vendor' :'neoforged',
-                'Implementation-Timestamp': java.time.Instant.now().toString(),
                 'Git-Commit': gradleutils.gitInfo.abbreviatedId,
-                'Git-Branch': gradleutils.gitInfo.branch,
                 'Build-Number': "${System.getenv("BUILD_NUMBER")?:0}"],
             'net/neoforged/coremod/')
 }
@@ -140,5 +139,14 @@ publishing {
     }
     repositories {
         maven gradleutils.getPublishingForgeMaven()
+    }
+}
+
+if (System.getenv('GPG_PRIVATE_KEY')) {
+    signing {
+        final signingKey = System.getenv('GPG_PRIVATE_KEY') ?: ''
+        final signingPassword = System.getenv('GPG_KEY_PASSWORD') ?: ''
+        useInMemoryPgpKeys(signingKey, signingPassword)
+        sign publishing.publications.mavenJava
     }
 }
