@@ -69,7 +69,7 @@ dependencies {
     implementation("org.ow2.asm:asm-commons:${ASM_VERSION}")
     implementation("org.ow2.asm:asm-tree:${ASM_VERSION}")
     implementation("org.ow2.asm:asm-util:${ASM_VERSION}")
-    implementation('net.neoforged:neoforgespi:8.0.0')
+    implementation('net.neoforged.fancymodloader:spi:2.0.6')
     implementation('org.openjdk.nashorn:nashorn-core:15.4')
 }
 
