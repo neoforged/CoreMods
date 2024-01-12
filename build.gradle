@@ -1,6 +1,6 @@
 plugins {
     id 'com.github.ben-manes.versions' version '0.39.0'
-    id 'net.neoforged.gradleutils' version '2.+'
+    id 'net.neoforged.gradleutils' version '3.0.0-alpha.10'
     id 'signing'
 }
 
@@ -12,7 +12,7 @@ group 'net.neoforged'
 
 java.toolchain.languageVersion = JavaLanguageVersion.of(17)
 
-version = gradleutils.getTagOffsetVersion()
+version = gradleutils.version
 
 ext.ASM_VERSION = 9.3
 
@@ -52,7 +52,7 @@ sourceSets {
 }
 
 changelog {
-    fromTag "6.0"
+    from "6.0"
 }
 dependencies {
     testImplementation('org.junit.jupiter:junit-jupiter-api:5.7.+')
@@ -137,7 +137,7 @@ publishing {
         }
     }
     repositories {
-        maven gradleutils.getPublishingForgeMaven()
+        maven gradleutils.publishingMaven
     }
 }
 
