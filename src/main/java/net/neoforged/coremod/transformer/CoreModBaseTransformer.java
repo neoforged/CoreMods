@@ -18,11 +18,11 @@ public abstract class CoreModBaseTransformer<T> implements ITransformer<T> {
     static final Logger LOGGER = LogManager.getLogger();
     static final Marker COREMOD = MarkerManager.getMarker("COREMOD");
     final CoreMod coreMod;
-    final Set<Target> targets;
+    final Set<Target<T>> targets;
     final Function<T, T> function;
     final String coreName;
 
-    public CoreModBaseTransformer(CoreMod coreMod, final String coreName, final Set<Target> targets, final Function<T, T> function) {
+    public CoreModBaseTransformer(CoreMod coreMod, final String coreName, final Set<Target<T>> targets, final Function<T, T> function) {
         this.coreMod = coreMod;
         this.coreName = coreName;
         this.targets = targets;
@@ -54,7 +54,7 @@ public abstract class CoreModBaseTransformer<T> implements ITransformer<T> {
 
     @NotNull
     @Override
-    public Set<Target> targets() {
+    public Set<Target<T>> targets() {
         return targets;
     }
 
