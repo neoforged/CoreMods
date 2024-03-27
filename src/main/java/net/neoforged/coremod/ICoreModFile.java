@@ -4,8 +4,9 @@
  */
 package net.neoforged.coremod;
 
-import java.io.*;
-import java.nio.file.*;
+import java.io.IOException;
+import java.io.Reader;
+import java.nio.file.Path;
 
 /**
  * Interface for core mods to discover content and properties
