@@ -1,7 +1,5 @@
 package net.neoforged.coremod;
 
-import net.neoforged.neoforgespi.coremod.ICoreModFile;
-
 import java.io.IOException;
 import java.io.Reader;
 import java.nio.file.FileSystems;

@@ -1,7 +1,6 @@
 package net.neoforged.coremod;
 
 import cpw.mods.modlauncher.api.*;
-import net.neoforged.neoforgespi.coremod.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.Marker;
@@ -47,7 +46,7 @@ public class CoreModEngine {
             "org.objectweb.asm.Label","org.objectweb.asm.Type",
             "org.objectweb.asm.TypePath","org.objectweb.asm.TypeReference"
     ));
-    void loadCoreMod(ICoreModFile coremod) {
+    public void loadCoreMod(ICoreModFile coremod) {
         // We have a factory per coremod, to provide namespace and functional isolation between coremods
         final ScriptEngine scriptEngine = NashornFactory.createEngine();
         final ScriptContext jsContext = scriptEngine.getContext();
