@@ -6,7 +6,7 @@ import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
-class JSFileLoader implements ICoreModFile {
+class JSFileLoader implements ICoreModScriptSource {
     private final Path path;
 
     JSFileLoader(final String path) {
@@ -23,11 +23,6 @@ class JSFileLoader implements ICoreModFile {
     }
 
     @Override
-    public Path getPath() {
-        return this.path;
-    }
-
-    @Override
     public Reader getAdditionalFile(final String fileName) throws IOException {
         return Files.newBufferedReader(this.path.getParent().resolve(fileName));
     }
@@ -35,5 +30,10 @@ class JSFileLoader implements ICoreModFile {
     @Override
     public String getOwnerId() {
         return "dummy";
+    }
+
+    @Override
+    public String getDebugSource() {
+        return path.toString();
     }
 }

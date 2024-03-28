@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.concurrent.Callable;
 
 public class TestLaunchTransformer {
-    private static CoreModEngine cme = new CoreModEngine();
+    private static CoreModScriptingEngine cme = new CoreModScriptingEngine();
     public static List<ITransformer<?>> getTransformers() {
         return cme.initializeCoreMods();
     }

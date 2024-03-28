@@ -13,27 +13,26 @@ import org.objectweb.asm.tree.MethodNode;
 
 import javax.script.*;
 import java.io.*;
-import java.nio.file.*;
 import java.util.*;
 import java.util.function.Function;
 import java.util.stream.*;
 
 public class CoreMod {
     public static final Marker COREMODLOG = MarkerManager.getMarker("COREMODLOG").addParents(MarkerManager.getMarker("COREMOD"));
-    private final ICoreModFile file;
+    private final ICoreModScriptSource file;
     private final ScriptEngine scriptEngine;
     private Map<String, ? extends Bindings> javaScript;
     private boolean loaded = false;
     private Exception error;
     private Logger logger;
 
-    CoreMod(final ICoreModFile file, final ScriptEngine scriptEngine) {
+    CoreMod(final ICoreModScriptSource file, final ScriptEngine scriptEngine) {
         this.file = file;
         this.scriptEngine = scriptEngine;
     }
 
-    public Path getPath() {
-        return this.file.getPath();
+    public String getDebugSource() {
+        return this.file.getDebugSource();
     }
 
     @SuppressWarnings("unchecked")
@@ -94,7 +93,7 @@ public class CoreMod {
         return error;
     }
 
-    public ICoreModFile getFile() {
+    public ICoreModScriptSource getFile() {
         return file;
     }
 

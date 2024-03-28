@@ -11,7 +11,7 @@ import org.openjdk.nashorn.api.scripting.ScriptObjectMirror;
 class NashornFactory {
     private static final String[] ARGS = new String[] {"--language=es6"};
     static ScriptEngine createEngine() {
-        return new NashornScriptEngineFactory().getScriptEngine(ARGS, getAppClassLoader(), CoreModEngine::checkClass);
+        return new NashornScriptEngineFactory().getScriptEngine(ARGS, getAppClassLoader(), CoreModScriptingEngine::checkClass);
     }
 
     private static ClassLoader getAppClassLoader() {
