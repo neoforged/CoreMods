@@ -1,7 +1,5 @@
 package net.neoforged.coremod.api;
 
-import cpw.mods.modlauncher.Launcher;
-import cpw.mods.modlauncher.api.INameMappingService;
 import net.neoforged.coremod.CoreModTracker;
 import org.jetbrains.annotations.Nullable;
 import org.objectweb.asm.Opcodes;
@@ -18,7 +16,6 @@ import java.lang.reflect.Modifier;
 import java.util.Iterator;
 import java.util.ListIterator;
 import java.util.Objects;
-import java.util.Optional;
 
 public class ASMAPI {
     public static MethodNode getMethodNode() {
@@ -42,18 +39,11 @@ public class ASMAPI {
     }
 
     public static String mapMethod(String name) {
-        return map(name, INameMappingService.Domain.METHOD);
+        return name;
     }
 
     public static String mapField(String name) {
-        return map(name, INameMappingService.Domain.FIELD);
-    }
-
-    private static String map(String name, INameMappingService.Domain domain) {
-        return Optional.ofNullable(Launcher.INSTANCE).
-                map(Launcher::environment).
-                flatMap(env->env.findNameMapping("srg")).
-                map(f -> f.apply(domain, name)).orElse(name);
+        return name;
     }
 
     public static boolean getSystemPropertyFlag(final String propertyName) {

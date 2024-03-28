@@ -7,6 +7,9 @@ import net.neoforged.coremod.transformer.CoreModFieldTransformer;
 import net.neoforged.coremod.transformer.CoreModMethodTransformer;
 import org.apache.logging.log4j.*;
 import org.jetbrains.annotations.Nullable;
+import org.objectweb.asm.tree.ClassNode;
+import org.objectweb.asm.tree.FieldNode;
+import org.objectweb.asm.tree.MethodNode;
 
 import javax.script.*;
 import java.io.*;
@@ -59,28 +62,28 @@ public class CoreMod {
         final String coreName = entry.getKey();
         final Bindings data = entry.getValue();
         final Map<String, Object> targetData = (Map<String, Object>)data.get("target");
-        final ITransformer.TargetType targetType = ITransformer.TargetType.valueOf((String)targetData.get("type"));
-        final Set<ITransformer.Target> targets;
+        final TargetType<?> targetType = TargetType.byName((String)targetData.get("type"));
         final Bindings function = (Bindings)data.get("transformer");
-        switch (targetType) {
-            case CLASS:
-                if (targetData.containsKey("names")) {
-                    Function<Map<String, Object>, Map<String, Object>> names = NashornFactory.getFunction((Bindings)targetData.get("names"));
-                    targets = names.apply(targetData).values().stream().map(o -> (String)o).map(ITransformer.Target::targetClass).collect(Collectors.toSet());
-                } else
-                    targets = Stream.of(ITransformer.Target.targetClass((String)targetData.get("name"))).collect(Collectors.toSet());
-                return new CoreModClassTransformer(this, coreName, targets, NashornFactory.getFunction(function));
-            case METHOD:
-                targets = Collections.singleton(ITransformer.Target.targetMethod(
-                        (String) targetData.get("class"), ASMAPI.mapMethod((String) targetData.get("methodName")), (String) targetData.get("methodDesc")));
-                return new CoreModMethodTransformer(this, coreName, targets, NashornFactory.getFunction(function));
-            case FIELD:
-                targets = Collections.singleton(ITransformer.Target.targetField(
-                        (String) targetData.get("class"), ASMAPI.mapField((String) targetData.get("fieldName"))));
-                return new CoreModFieldTransformer(this, coreName, targets, NashornFactory.getFunction(function));
-            default:
-                throw new RuntimeException("Unimplemented target type " + targetData);
+        if (targetType.equals(TargetType.CLASS)) {
+            Set<ITransformer.Target<ClassNode>> targets;
+            if (targetData.containsKey("names")) {
+                Function<Map<String, Object>, Map<String, Object>> names = NashornFactory.getFunction((Bindings) targetData.get("names"));
+                targets = names.apply(targetData).values().stream().map(o -> (String) o).map(ITransformer.Target::targetClass).collect(Collectors.toSet());
+            } else
+                targets = Stream.of(ITransformer.Target.targetClass((String) targetData.get("name"))).collect(Collectors.toSet());
+            return new CoreModClassTransformer(this, coreName, targets, NashornFactory.getFunction(function));
+        } else if (targetType.equals(TargetType.METHOD)) {
+            Set<ITransformer.Target<MethodNode>> targets;
+            targets = Collections.singleton(ITransformer.Target.targetMethod(
+                    (String) targetData.get("class"), ASMAPI.mapMethod((String) targetData.get("methodName")), (String) targetData.get("methodDesc")));
+            return new CoreModMethodTransformer(this, coreName, targets, NashornFactory.getFunction(function));
+        } else if (targetType.equals(TargetType.FIELD)) {
+            Set<ITransformer.Target<FieldNode>> targets;
+            targets = Collections.singleton(ITransformer.Target.targetField(
+                    (String) targetData.get("class"), ASMAPI.mapField((String) targetData.get("fieldName"))));
+            return new CoreModFieldTransformer(this, coreName, targets, NashornFactory.getFunction(function));
         }
+        throw new RuntimeException("Unimplemented target type " + targetData);
     }
 
     public boolean hasError() {
