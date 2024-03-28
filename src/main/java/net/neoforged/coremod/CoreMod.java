@@ -5,7 +5,6 @@ import net.neoforged.coremod.api.ASMAPI;
 import net.neoforged.coremod.transformer.CoreModClassTransformer;
 import net.neoforged.coremod.transformer.CoreModFieldTransformer;
 import net.neoforged.coremod.transformer.CoreModMethodTransformer;
-import net.neoforged.neoforgespi.coremod.*;
 import org.apache.logging.log4j.*;
 import org.jetbrains.annotations.Nullable;
 import org.objectweb.asm.tree.ClassNode;
