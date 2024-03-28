@@ -10,7 +10,7 @@ import javax.script.*;
 import java.util.*;
 import java.util.stream.*;
 
-public class CoreModEngine {
+public class CoreModScriptingEngine {
     private static final Logger LOGGER = LogManager.getLogger();
     private static final Marker COREMOD = MarkerManager.getMarker("COREMOD");
     private List<CoreMod> coreMods = new ArrayList<>();
@@ -46,7 +46,7 @@ public class CoreModEngine {
             "org.objectweb.asm.Label","org.objectweb.asm.Type",
             "org.objectweb.asm.TypePath","org.objectweb.asm.TypeReference"
     ));
-    public void loadCoreMod(ICoreModFile coremod) {
+    public void loadCoreMod(ICoreModScriptSource coremod) {
         // We have a factory per coremod, to provide namespace and functional isolation between coremods
         final ScriptEngine scriptEngine = NashornFactory.createEngine();
         final ScriptContext jsContext = scriptEngine.getContext();
@@ -70,7 +70,7 @@ public class CoreModEngine {
     }
 
     private void initialize(final CoreMod coreMod) {
-        LOGGER.debug(COREMOD,"Loading CoreMod from {}", coreMod.getPath());
+        LOGGER.debug(COREMOD,"Loading CoreMod from {}", coreMod.getDebugSource());
         coreMod.initialize();
         if (coreMod.hasError()) {
             LOGGER.error(COREMOD,"Error occurred initializing CoreMod", coreMod.getError());

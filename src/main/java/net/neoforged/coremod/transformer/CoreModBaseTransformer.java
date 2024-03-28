@@ -37,7 +37,7 @@ public abstract class CoreModBaseTransformer<T> implements ITransformer<T> {
         try {
             result = runCoremod(result);
         } catch (Exception e) {
-            LOGGER.error(COREMOD, "Error occurred applying transform of coremod {} function {}", this.coreMod.getPath(), this.coreName, e);
+            LOGGER.error(COREMOD, "Error occurred applying transform of coremod {} function {}", this.coreMod.getDebugSource(), this.coreName, e);
         } finally {
             CoreModTracker.clearCoreMod();
         }

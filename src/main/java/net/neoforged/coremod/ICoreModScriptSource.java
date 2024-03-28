@@ -6,15 +6,14 @@ package net.neoforged.coremod;
 
 import java.io.IOException;
 import java.io.Reader;
-import java.nio.file.Path;
 
 /**
  * Interface for core mods to discover content and properties
  * of their location and context to the coremod implementation.
  */
-public interface ICoreModFile {
+public interface ICoreModScriptSource {
     String getOwnerId();
     Reader readCoreMod() throws IOException;
-    Path getPath();
     Reader getAdditionalFile(final String fileName) throws IOException;
+    String getDebugSource();
 }

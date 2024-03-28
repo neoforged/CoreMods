@@ -12,7 +12,7 @@ public class CoreModTest {
     @SuppressWarnings("unchecked")
     @Test
     void testJSLoading() {
-        final CoreModEngine coreModEngine = new CoreModEngine();
+        final CoreModScriptingEngine coreModEngine = new CoreModScriptingEngine();
         coreModEngine.loadCoreMod(new JSFileLoader("src/test/javascript/testcoremod.js"));
         coreModEngine.loadCoreMod(new JSFileLoader("src/test/javascript/testcore2mod.js"));
         coreModEngine.loadCoreMod(new JSFileLoader("src/test/javascript/testdata.js"));
